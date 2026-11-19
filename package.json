@@ -1,0 +1,33 @@
+{
+  "name": "neural-face-swap",
+  "version": "1.0.0",
+  "description": "Neural Face Swap by Scientific Tamil Nadu",
+  "author": "Scientific Tamil Nadu",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "22.3.27",
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "org.scientifictamilnadu.neuralfaceswap",
+    "productName": "Neural Face Swap",
+    "copyright": "Scientific Tamil Nadu",
+    "files": ["main.js", "preload.js", "index.html"],
+    "extraResources": [
+      { "from": "engine/dist/swap_engine", "to": "engine" },
+      { "from": "models", "to": "models" }
+    ],
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Neural Face Swap",
+      "artifactName": "Neural-Face-Swap-Setup-${version}-${arch}.${ext}"
+    }
+  }
+}
